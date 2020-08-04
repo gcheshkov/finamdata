@@ -1,11 +1,12 @@
-import enum
 import datetime
+import enum
 from pathlib import Path
 
 import typer
 
 from finamdata.finam import DEFAULT_DATADIR, get_market_data
 from finamdata.utils import format_for_tslab
+
 from .contract import ContractName
 
 app = typer.Typer()
