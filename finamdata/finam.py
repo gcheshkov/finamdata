@@ -87,6 +87,8 @@ def get_market_data(
     )
     result = pd.concat((c for c in chunks if len(c) != 0))
 
+    result["contract"] = result["contract"].astype("category")
+
     return result
 
 
