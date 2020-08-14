@@ -4,7 +4,7 @@ from typing import Optional
 
 import pandas as pd
 from dateutil.relativedelta import relativedelta
-from finam.export import Exporter, Market, Timeframe
+from finam.export import Exporter, Market, Timeframe, LookupComparator
 
 from .contract import ContractName, ContractSpec
 
@@ -15,7 +15,10 @@ def download_contract_data(
     contract: ContractSpec, timeframe: Timeframe
 ) -> pd.DataFrame:
     exporter = Exporter()
-    lookup_df = exporter.lookup(name=contract.full_code, code=contract.short_code)
+    lookup_df = exporter.lookup(
+        name=f"{contract.full_code}({contract.short_code})",
+        name_comparator=LookupComparator.EQUALS,
+    )
     if len(lookup_df.index) != 1:
         raise ValueError(
             f"Contract lookup failed. Returned {len(lookup_df.index)} rows. "
