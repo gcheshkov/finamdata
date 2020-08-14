@@ -57,7 +57,9 @@ class ContractSpec:
 
     @property
     def full_code(self):
-        return f"{self.name.name}-{self.expiration.month}.{self.expiration.year % 100}"
+        return (
+            f"{self.name.name}-{self.expiration.month}.{self.expiration.year % 100:02}"
+        )
 
     @property
     def short_code(self):

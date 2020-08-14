@@ -35,7 +35,7 @@ def align_margin_to_marketdata(
 
     result = data_df.merge(margin_df, on="date", how="left")
 
-    result['initial_margin'] = result['initial_margin'].ffill()
+    result["initial_margin"] = result["initial_margin"].ffill()
 
     result = result.set_index("index")
     result["contract"] = "MARGIN"
