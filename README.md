@@ -1,4 +1,4 @@
-= Загрузка и склейка данных фьючерсных контрактов из finam
+##  Загрузка и склейка данных фьючерсных контрактов из finam
 
 ```
 Usage: finamdata [OPTIONS] OUTFILE [MARGIN_OUTFILE]
