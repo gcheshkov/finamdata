@@ -34,11 +34,15 @@ def align_margin_to_marketdata(
     data_df["index"] = data_df.index.to_series()
 
     result = data_df.merge(margin_df, on="date", how="left")
+
+    result['initial_margin'] = result['initial_margin'].ffill()
+
     result = result.set_index("index")
     result["contract"] = "MARGIN"
     result["open"] = result["initial_margin"]
     result["high"] = result["initial_margin"]
     result["low"] = result["initial_margin"]
+    result["close"] = result["initial_margin"]
     result["volume"] = 0
     result = result.drop(["date", "initial_margin"], axis=1)
     return result
