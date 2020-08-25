@@ -28,7 +28,8 @@ EXPIRATION_MONTH_CODES = [
 class ContractName(enum.Enum):
     RTS = "RI"
     SBRF = "SR"
-    SI = "SI"
+    Si = "Si"
+    ED = "ED"
 
 
 class ContractSpec:
