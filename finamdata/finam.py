@@ -24,12 +24,20 @@ def download_contract_data(
             f"Contract lookup failed. Returned {len(lookup_df.index)} rows. "
             f"Names: {', '.join(lookup_df['name'])}"
         )
+
+    today = datetime.date.today()
+    start_date = contract.expiration - relativedelta(months=3, day=1)
+    end_date = contract.expiration + relativedelta(months=1, day=1)
+
+    if end_date > today:
+        end_date = today
+
     df = exporter.download(
         lookup_df.index[0],
         Market(lookup_df["market"].iloc[0]),
         timeframe=timeframe,
-        start_date=contract.expiration - relativedelta(months=3, day=1),
-        end_date=contract.expiration + relativedelta(months=1, day=1),
+        start_date=start_date,
+        end_date=end_date,
     )
     df = df.rename(
         columns={
