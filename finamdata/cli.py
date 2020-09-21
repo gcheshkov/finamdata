@@ -20,7 +20,7 @@ class DataFormat(enum.Enum):
 
 
 def _default_end_date():
-    return datetime.datetime.now()
+    return (datetime.date.today() - datetime.timedelta(days=1)).isoformat()
 
 
 @app.command()
